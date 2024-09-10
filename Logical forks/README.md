@@ -56,4 +56,13 @@ if (mask == 1) // a & b are non-zero
     ; // do something 
 ```
 
-What happens if we use ```||``` instead of ```&&```? the mask now has the value of 0 when all forks return 0.
+What happens if we use ```||``` instead of ```&&```? The children still belong to the same parent but the mask now has the value of 0 when all forks return 0. Consider **x4**
+```c
+#ifdef x4
+    pid_t a, b,c;
+    int mask = ( a = fork() ) || (b = fork()) || (c = fork());
+    if (mask == 0)      //in process c
+        prints(mask);
+#endif
+```
+prints(mask) executes in process since it must go thorugh that chain.
