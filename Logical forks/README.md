@@ -7,7 +7,10 @@ We assume fork() never fails.
 
 ## Guide
 Consider **x1**
-```c int mask = ( a = fork() ) && (b = fork() );```
+```c
+pid_t a = -1; pid_t b = -1;
+int mask = ( a = fork() ) && (b = fork() );
+```
 #
 Here the parent process has two children. a & b store their pids. In total only three calls can be made
 
@@ -27,4 +30,30 @@ Here the parent process has two children. a & b store their pids. In total only 
     else    //PARENT
         prints(mask);
 ```
-For simplicity lets make that into a macro
+#
+What if we want moer then 2 children?
+consider **x2**
+```c
+#ifdef x2
+    pid_t a = -1; pid_t b = -1; pid_t c = -1;
+    int mask = ( a = fork() ) && (b = fork()) && (c = fork());
+    if (a == 0) prints(a);
+    else if (b == 0) prints(b);
+    else if (c == 0) prints(c);
+    else prints(mask);
+#endif
+```
+This creates three process a,b,c with 1 parent.
+we can extend this for some n.
+# Unraveled nested if-else
+Notice how the if else statements are not nested unlike traditional forks()? This has to do with how the expression is evaluated as well as the values they can have. But it is kind of necessary to check them all on the order given if the following variables are not initialized. Here we have initialed them to -1 which is not exactly a good idea.
+# mask
+Ok, So what significane does the mask have? Well notice that mask is 1 only when all forks() return a non-zero value. if we only needed to access the parent process then checking ht e mask is enough.COnsider **x3**
+```c
+pid_t a; pid_t b;
+int mask = ( a = fork()) && (b= fork());
+if (mask == 1) // a & b are non-zero
+    ; // do something 
+```
+
+What happens if we use ```||``` instead of ```&&```? the mask now has the value of 0 when all forks return 0.
