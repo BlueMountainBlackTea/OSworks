@@ -1,6 +1,6 @@
 # OSWorks
 
-OSWorks is a repository containing selected problems and solutions from the OS 3003 course offered at IIITDM. This repository aims to provide students with practical implementations and examples to better understand operating system concepts covered in the course.
+OSWorks is a repository containing selected problems and solutions from the OS 3003 course offered at IIITDM. This repository is a fun experiment for myself regarding some problems given or some variation cooked up by the self.
 
 ## Repository Contents
 
