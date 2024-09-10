@@ -7,7 +7,7 @@ We assume fork() never fails.
 
 ## Guide
 Consider **x1**
->int mask = ( a = fork() ) && (b = fork() );
+```c int mask = ( a = fork() ) && (b = fork() );```
 #
 Here the parent process has two children. a & b store their pids. In total only three calls can be made
 
@@ -16,3 +16,14 @@ Here the parent process has two children. a & b store their pids. In total only 
 | 0 |   |
 | 1 | 0 |
 | 1 | 1 |
+
+```c
+    #define prints(a) printf("process:" #a " pid:%d, ppid:%d\n",getpid(),getppid())
+    if (a == 0)
+        prints(a);
+    else if (b == 0)
+        prints(b);
+    else    //PARENT
+        prints(mask);
+```
+For simplicity lets make that into a macro
