@@ -65,7 +65,7 @@ What happens if we use ```||``` instead of ```&&```? The children still belong t
         prints(mask);
 #endif
 ```
-prints(mask) executes in process since it must go thorugh the chain a = 0, b = 0, c = 0.
+prints(mask) executes in process c since it must go thorugh the chain a = 0, b = 0, c = 0.
 
 Thats all neat and all. But can we modify it to work on particular process? Say we have 5 different procs.
 We are only concerned with executing some statements on process 3. Can we create a mask to do that?
