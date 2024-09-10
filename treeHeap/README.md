@@ -1,7 +1,7 @@
 # TreeHeap
 
 ## Overview
-Problem Statement: implement heap using binary trees (and not arrays as usual).
+Problem Statement: implement heap using binary trees (and not array as usual).
 
 ##
 Currently implemented 
