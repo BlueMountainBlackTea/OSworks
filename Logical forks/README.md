@@ -48,7 +48,7 @@ we can extend this for some n.
 # Unraveled nested if-else
 Notice how the if else statements are not nested unlike traditional forks()? This has to do with how the expression is evaluated as well as the values they can have. But it is kind of necessary to check them all on the order given if the following variables are not initialized. Here we have initialed them to -1 which is not exactly a good idea.
 # mask
-Ok, So what significane does the mask have? Well notice that mask is 1 only when all forks() return a non-zero value. if we only needed to access the parent process then checking ht e mask is enough.COnsider **x3**
+Ok, So what significane does the mask have? Well notice that mask is 1 only when all forks() return a non-zero value. if we only needed to access the parent process then checking ht e mask is enough.Consider **x3**
 ```c
 pid_t a; pid_t b;
 int mask = ( a = fork()) && (b= fork());
@@ -65,4 +65,8 @@ What happens if we use ```||``` instead of ```&&```? The children still belong t
         prints(mask);
 #endif
 ```
-prints(mask) executes in process since it must go thorugh that chain.
+prints(mask) executes in process since it must go thorugh the chain a = 0, b = 0, c = 0.
+
+Thats all neat and all. But can we modify it to work on particular process? Say we have 5 different procs.
+We are only concerned with executing some statements on process 3. Can we create a mask to do that?
+
