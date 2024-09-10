@@ -18,6 +18,7 @@ Here the parent process has two children. a & b store their pids. In total only 
 | 1 | 1 |
 
 ```c
+    //macro to print pids of process
     #define prints(a) printf("process:" #a " pid:%d, ppid:%d\n",getpid(),getppid())
     if (a == 0)
         prints(a);
