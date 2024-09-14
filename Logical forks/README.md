@@ -66,7 +66,21 @@ What happens if we use ```||``` instead of ```&&```? The children still belong t
 #endif
 ```
 prints(mask) executes in process c since it must go thorugh the chain a = 0, b = 0, c = 0.
-
 Thats all neat and all. But can we modify it to work on particular process? Say we have 5 different procs.
 We are only concerned with executing some statements on process 3. Can we create a mask to do that?
+We will get back to that, soon.
+
+# Counting the number of processes
+To count the number of processes we will be taking two approaches (which are the same but represented differently).
+Method 1 involves building a short circuited table.
+`fork() && fork() && fork()`
+| a | b | c |
+|---|---|---|
+| 0 |   |   | 
+| 1 | 0 |   | 
+| 1 | 1 | 0 |
+| 1 | 1 | 1 |
+
+#TODO
+
 
