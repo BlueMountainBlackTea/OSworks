@@ -81,6 +81,27 @@ Method 1 involves building a short circuited table.
 | 1 | 1 | 0 |
 | 1 | 1 | 1 |
 
+```python
+    [    P    ]
+         |
+         |
+    [    1    ] -------- [    0    ]            #first fork
+         |
+         |
+    [    1    ] -------- [    0    ]            #second fork called by process P
+         |
+         |
+    [    1    ] -------- [    0    ]            #third fork
+    
+```
+In this structure P calls fork creating two children, one returning 0 and the other returning a non-zero (we assume it always return 1). In order to convert it into a parent-child binary tree from this sibling tree, we need to notice a few things. All the nodes growing up belong to the same node while the siblings becomes its children. 
+So, we have
+```python
+    [    P    ]
+|        |        |
+|        |        |
+[C1]    [C2]     [C3] 
+```
 #TODO
 
 
