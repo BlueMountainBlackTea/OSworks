@@ -72,7 +72,8 @@ We will get back to that, soon.
 
 # Counting the number of processes
 To count the number of processes we will be taking two approaches (which are the same but represented differently).
-Method 1 involves building a short circuited table.
+
+
 `fork() && fork() && fork()`
 | a | b | c |
 |---|---|---|
@@ -80,6 +81,8 @@ Method 1 involves building a short circuited table.
 | 1 | 0 |   | 
 | 1 | 1 | 0 |
 | 1 | 1 | 1 |
+
+Building the tree: we first a build a sibling tree as an intermediate, before converting it into a parent-child tree.
 
 ```python
     [    P    ]
@@ -94,7 +97,7 @@ Method 1 involves building a short circuited table.
     [    1    ] -------- [    0    ]            #third fork
     
 ```
-In this structure P calls fork creating two children, one returning 0 and the other returning a non-zero (we assume it always return 1). In order to convert it into a parent-child binary tree from this sibling tree, we need to notice a few things. All the nodes growing up belong to the same node while the siblings becomes its children. 
+In this structure P calls fork creating two children, one returning 0 (the child) and the other returning a non-zero (the aprent) (we assume it always return 1). In order to convert it into a parent-child binary tree from this sibling tree, we need to notice a few things. All the nodes growing up belong to the same node while the siblings becomes its children. 
 So, we have
 ```python
     [    P    ]
